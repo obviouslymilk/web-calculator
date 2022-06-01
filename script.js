@@ -32,3 +32,19 @@ function divide(a, b) {
     return a / b;
 }
 
+
+function operate(operator, a, b) {
+    switch (operator) {
+        case Operators.ADD.NAME:
+            return add(a, b);
+        case Operators.SUB.NAME:
+            return subtract(a, b);
+        case Operators.MUL.NAME:
+            return multiply(a, b);
+        case Operators.DIV.NAME:
+            return divide(a, b);
+        default:
+            break;
+    }
+}
+
