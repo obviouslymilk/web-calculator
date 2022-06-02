@@ -33,6 +33,11 @@ function divide(a, b) {
 }
 
 
+function percent(a, b) {
+    return (a / 100) * b;
+}
+
+
 function operate(operator, a, b) {
     switch (operator) {
         case Operators.ADD.NAME:
