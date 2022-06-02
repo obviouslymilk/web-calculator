@@ -23,9 +23,16 @@ const displayLabel = document.querySelector('.display');
 const historyLabel = document.querySelector('.history');
 
 
-let displayValue = '0';
+let displayValue = '';
 let selectedOperator = '';
 let tempValue = '';
+
+
+function clear() {
+    displayValue = '0';
+    selectedOperator = '';
+    tempValue = '';
+}
 
 
 function add(a, b) {
@@ -72,9 +79,9 @@ function operate(operator, a, b) {
 }
 
 
-function populateDisplay() {
+function populateDisplay(displayText = displayValue) {
     historyLabel.textContent = `${tempValue} ${Operators[selectedOperator] || ''} ${displayValue}`;
-    displayLabel.textContent = displayValue;
+    displayLabel.textContent = displayText;
 }
 
 
@@ -86,9 +93,18 @@ function onDigitPressed(e) {
 
 
 function onOperatorPressed(e) {
-    selectedOperator = e.target.value
-    tempValue = displayValue;
-    displayValue = '0';
+    if (displayValue === '') return;
+
+    if ( e.target.value === 'equal') {
+        if (selectedOperator == '') return;
+        populateDisplay(operate(selectedOperator, parseInt(tempValue), parseInt(displayValue)));
+        historyLabel.textContent += ' =';
+        return clear();
+    }
+
+    tempValue = selectedOperator == '' ? displayValue : operate(selectedOperator, parseInt(tempValue), parseInt(displayValue));
+    displayValue = '';
+    selectedOperator = e.target.value;
     populateDisplay();
 }
 
