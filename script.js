@@ -6,7 +6,8 @@ const Operators = {
     SUB: {NAME: 'sub', SYMBOL: '-'},
     MUL: {NAME: 'mul', SYMBOL: '×'},
     DIV: {NAME: 'div', SYMBOL: '÷'},
-    PER: {NAME: 'per', SYMBO: '%'}
+    PER: {NAME: 'per', SYMBOl: '%'},
+    EQL: {NAME: 'eql', SYMBOL: '='}
 }
 
 let firstNumberString = '';
@@ -51,6 +52,7 @@ function operate(operator, a, b) {
             return divide(a, b);
         case Operators.PER.NAME:
             return percent(a, b);
+        // TODO: Add Equal operator case
         default:
             break;
     }
