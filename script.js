@@ -1,19 +1,11 @@
 // TODO: добавить функции (add, subtract, multiply, divide) основных математических операций.
 // TODO: написать функцию operate, которая возвращает результат вычисления на основе выбранного оператора.
-// const Operators = {
-//     ADD: {NAME: 'add', SYMBOL: '+'},
-//     SUB: {NAME: 'sub', SYMBOL: '-'},
-//     MUL: {NAME: 'mul', SYMBOL: '×'},
-//     DIV: {NAME: 'div', SYMBOL: '÷'},
-//     PER: {NAME: 'per', SYMBOl: '%'},
-// }
 
 const Operators = {
     ['add']: '+',
     ['sub']: '-',
     ['mul']: '×',
     ['div']: '÷',
-    ['per']: '%',
 }
 
 
@@ -51,13 +43,9 @@ function multiply(a, b) {
 
 
 function divide(a, b) {
-    return a / b;
+    return (a / b).toFixed(2);
 }
 
-
-function percent(a, b) {
-    return (a / 100) * b;
-}
 
 
 function operate(operator, a, b) {
@@ -70,9 +58,6 @@ function operate(operator, a, b) {
             return multiply(a, b);
         case 'div':
             return divide(a, b);
-        case 'per':
-            return percent(a, b);
-        // TODO: Add Equal operator case
         default:
             break;
     }
@@ -94,6 +79,10 @@ function onDigitPressed(e) {
 
 function onOperatorPressed(e) {
     if (displayValue === '') return;
+
+    if (tempValue != '' && displayValue === '0' && selectedOperator === 'div') {
+        return alert('You can\'t divide by 0!');
+    }
 
     if ( e.target.value === 'equal') {
         if (selectedOperator == '') return;
