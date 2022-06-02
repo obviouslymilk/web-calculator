@@ -10,7 +10,12 @@ const Operators = {
 
 
 const digitButtons = document.querySelectorAll('.digit');
-const operatorsButtons = document.querySelectorAll('.operator')
+const operatorsButtons = document.querySelectorAll('.operator');
+
+const clearButton = document.querySelector('.clear');
+const swapButton = document.querySelector('.swap');
+const dotButton = document.querySelector('.dot')
+
 const displayLabel = document.querySelector('.display');
 const historyLabel = document.querySelector('.history');
 
@@ -21,7 +26,7 @@ let tempValue = '';
 
 
 function clear() {
-    displayValue = '0';
+    displayValue = '';
     selectedOperator = '';
     tempValue = '';
 }
@@ -98,5 +103,26 @@ function onOperatorPressed(e) {
 }
 
 
+
 digitButtons.forEach(btn => btn.addEventListener('click', onDigitPressed))
 operatorsButtons.forEach(btn => btn.addEventListener('click', onOperatorPressed))
+
+clearButton.addEventListener('click', () => {
+    clear();
+    populateDisplay();
+})
+
+swapButton.addEventListener('click', () => {
+    if (parseInt(displayValue) >= 0) {
+        displayValue = '-' + displayValue;
+    } else {
+        displayValue = displayValue.substring(1);
+    }
+    populateDisplay();
+})
+
+dotButton.addEventListener('click', () => {
+    if (displayValue.includes('.') || displayValue === '') return;
+    displayValue += '.';
+    populateDisplay();
+})
