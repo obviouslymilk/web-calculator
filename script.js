@@ -3,9 +3,10 @@
 
 const Operators = {
     ADD: {NAME: 'add', SYMBOL: '+'},
-    SUB: {NAME: 'sub', SYNBOL: '-'},
-    MUL: {NAME: 'mul', SYNBOL: '×'},
-    DIV: {NAME: 'div', SYNBOL: '÷'},
+    SUB: {NAME: 'sub', SYMBOL: '-'},
+    MUL: {NAME: 'mul', SYMBOL: '×'},
+    DIV: {NAME: 'div', SYMBOL: '÷'},
+    PER: {NAME: 'per', SYMBO: '%'}
 }
 
 let firstNumberString = '';
@@ -48,6 +49,8 @@ function operate(operator, a, b) {
             return multiply(a, b);
         case Operators.DIV.NAME:
             return divide(a, b);
+        case Operators.PER.NAME:
+            return percent(a, b);
         default:
             break;
     }
