@@ -1,18 +1,31 @@
 // TODO: добавить функции (add, subtract, multiply, divide) основных математических операций.
 // TODO: написать функцию operate, которая возвращает результат вычисления на основе выбранного оператора.
+// const Operators = {
+//     ADD: {NAME: 'add', SYMBOL: '+'},
+//     SUB: {NAME: 'sub', SYMBOL: '-'},
+//     MUL: {NAME: 'mul', SYMBOL: '×'},
+//     DIV: {NAME: 'div', SYMBOL: '÷'},
+//     PER: {NAME: 'per', SYMBOl: '%'},
+// }
 
 const Operators = {
-    ADD: {NAME: 'add', SYMBOL: '+'},
-    SUB: {NAME: 'sub', SYMBOL: '-'},
-    MUL: {NAME: 'mul', SYMBOL: '×'},
-    DIV: {NAME: 'div', SYMBOL: '÷'},
-    PER: {NAME: 'per', SYMBOl: '%'},
-    EQL: {NAME: 'eql', SYMBOL: '='}
+    ['add']: '+',
+    ['sub']: '-',
+    ['mul']: '×',
+    ['div']: '÷',
+    ['per']: '%',
 }
 
-let firstNumberString = '';
-let secondNumberString = '';
+
+const digitButtons = document.querySelectorAll('.digit');
+const operatorsButtons = document.querySelectorAll('.operator')
+const displayLabel = document.querySelector('.display');
+const historyLabel = document.querySelector('.history');
+
+
+let displayValue = '0';
 let selectedOperator = '';
+let tempValue = '';
 
 
 function add(a, b) {
@@ -42,15 +55,15 @@ function percent(a, b) {
 
 function operate(operator, a, b) {
     switch (operator) {
-        case Operators.ADD.NAME:
+        case 'add':
             return add(a, b);
-        case Operators.SUB.NAME:
+        case 'sub':
             return subtract(a, b);
-        case Operators.MUL.NAME:
+        case 'mul':
             return multiply(a, b);
-        case Operators.DIV.NAME:
+        case 'div':
             return divide(a, b);
-        case Operators.PER.NAME:
+        case 'per':
             return percent(a, b);
         // TODO: Add Equal operator case
         default:
@@ -58,3 +71,27 @@ function operate(operator, a, b) {
     }
 }
 
+
+function populateDisplay() {
+    historyLabel.textContent = `${tempValue} ${Operators[selectedOperator] || ''} ${displayValue}`;
+    displayLabel.textContent = displayValue;
+}
+
+
+function onDigitPressed(e) {
+    const value = e.target.value;
+    displayValue = displayValue === '0' ? value : displayValue + value;
+    populateDisplay();
+}
+
+
+function onOperatorPressed(e) {
+    selectedOperator = e.target.value
+    tempValue = displayValue;
+    displayValue = '0';
+    populateDisplay();
+}
+
+
+digitButtons.forEach(btn => btn.addEventListener('click', onDigitPressed))
+operatorsButtons.forEach(btn => btn.addEventListener('click', onOperatorPressed))
