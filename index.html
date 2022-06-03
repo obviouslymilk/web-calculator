@@ -10,13 +10,14 @@
 </head>
 <body>
     <div class='calculator-container'>
-        <div class='history'></div>
-        <div class='display'></div>
-        <div class='buttons-container'>
+        <p class='history'></p>
+        <p class='display'></p>
+        <div class="func-container">
             <button type='button' class='clear'>AC</button>
-            <button type='button' class='swap'>+/-</button>
-            <button type='button' class='operator' value='div'>÷</button>
-
+            <button type='button' class='swap'>±</button>
+            <button type='button' class='operator' value='div'>÷</button>            
+        </div>
+        <div class='buttons-container'>
             <button type='button' class='digit' value='7'>7</button>
             <button type='button' class='digit' value='8'>8</button>
             <button type='button' class='digit' value='9'>9</button>
@@ -31,11 +32,11 @@
             <button type='button' class='digit' value='2'>2</button>
             <button type='button' class='digit' value='3'>3</button>
             <button type='button' class='operator' value='add'>+</button>
-
-            <button type='button' class='digit' value='0'>0</button>
+        </div>
+        <div class="func-container">
+            <button type='button' class='digit' value='0' id='zero'>0</button>
             <button type='button' class='dot'>.</button>
             <button type='button' class='operator' value='equal'>=</button>
-            
         </div>
     </div>
 </body>
