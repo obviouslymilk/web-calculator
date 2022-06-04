@@ -45,7 +45,7 @@ function multiply(a, b) {
 
 
 function divide(a, b) {
-    return (a / b).toFixed(2);
+    return (a / b);
 }
 
 
@@ -88,12 +88,12 @@ function onOperatorPressed(e) {
 
     if ( e.target.value === 'equal') {
         if (selectedOperator == '') return;
-        populateDisplay(operate(selectedOperator, parseInt(tempValue), parseInt(displayValue)));
+        populateDisplay(operate(selectedOperator, parseFloat(tempValue), parseFloat(displayValue)));
         historyLabel.textContent += ' =';
         return clear();
     }
 
-    tempValue = selectedOperator == '' ? displayValue : operate(selectedOperator, parseInt(tempValue), parseInt(displayValue));
+    tempValue = selectedOperator == '' ? displayValue : operate(selectedOperator, parseFloat(tempValue), parseFloat(displayValue));
     displayValue = '';
     selectedOperator = e.target.value;
     populateDisplay();
